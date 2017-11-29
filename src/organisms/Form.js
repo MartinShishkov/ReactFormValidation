@@ -1,71 +1,54 @@
 import React from "react";
+import { ObjectBuilder } from "../logic/ObjectBuilder";
+import { ObjectBuilderViewModel } from "../logic/ObjectBuilderViewModel";
 import { TextBoxGroup } from "../molecules/TextBoxGroup";
 
 class Form extends React.Component{
     constructor(props){
         super(props);
+        
+        this.builder = new ObjectBuilder();
 
-        this.state = {
-            firstName: "",
-            lastName: "",
-            email: "",
-            password: "",
-            confirmPassword: "",
-            canSubmit: true
-        };
+        this.vm = new ObjectBuilderViewModel(this.builder, {
+            ERROR_FIRSTNAME_MISSING: "First name cannot be empty!"
+        });
+
+        this.state = this.vm.getState();
 
         this.handleChange = this.handleChange.bind(this);
+        this.handleEmailChange = this.handleEmailChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     render(){
         return (
             <form onSubmit={this.handleSubmit} method="POST">
-                <TextBoxGroup label={"First name"} name={"firstName"}  value={this.state.firstName} 
-                    onChange={this.handleChange} validation={{ rules: [
-                        {
-                            condition: (firstName) => {
-                                const isValid = firstName.length >= 6;
-                                return isValid;
-                            },
-                            errorMessage: "First name must be at least 6 chars long!"
-                        },
-                        {
-                            condition: (firstName) => {
-                                const isValid = firstName.toLowerCase() !== this.state.lastName.toLowerCase();
-                                return isValid;
-                            },
-                            errorMessage: "First name cannot be the same as last name!"
-                        }
-                    ]
-                }}/>
+                <TextBoxGroup label={"First name"} name={"firstName"} value={this.state.firstName} 
+                    onChange={this.handleChange} errors={this.state.firstNameErrors}/>
 
                 <TextBoxGroup label={"Last name"} name={"lastName"} value={this.state.lastName} 
-                    onChange={this.handleChange} validation={{
-                        rules: []
-                    }}/>
+                    onChange={this.handleChange} errors={[]}/>
 
-                <TextBoxGroup label={"Email"} name={"email"} type={"email"}
-                    value={this.state.email} onChange={this.handleChange} validation={{
-                        rules: [{
-                            condition: (email) => {
-                                const r = new RegExp(/(martin)/);
-                                const isValid =  r.test(email) === false;
-                                return isValid;
-                            },
-                            errorMessage: "Dude, your email must not contain 'martin' in it!"
-                        }]
-                    }}/>
+                {this.state.emails.map( (e, i) => {
+                    return (
+                        <div key={e.key}>
+                            <TextBoxGroup label={"Email"} name={"email"} type={"email"}
+                                value={e.value} onChange={this.handleChange} errors={[]}/>
+                            <button onClick={() => {}}>X</button>
+                        </div>
+                    );
+                })}
+
+                <button onClick={() => {
+                    this.vm.addEmailSlot();
+                    this.setState(this.vm.getState());
+                }}>{"+"}</button>
 
                 <TextBoxGroup label={"Password"} name={"password"} type={"password"}
-                    value={this.state.password} onChange={this.handleChange} validation={{
-                        rules: []
-                    }}/>
+                    value={""} onChange={this.handleChange} errors={[]}/>
 
                 <TextBoxGroup label={"Confirm password"} name={"confirmPassword"} type={"password"}
-                    value={this.state.confirmPassword} onChange={this.handleChange} validation={{
-                        rules: []
-                    }}/>
+                    value={""} onChange={this.handleChange} errors={[]}/>
 
                 <input type="submit" value={"submit"} />
             </form>
@@ -73,18 +56,24 @@ class Form extends React.Component{
     }
 
     handleChange({target}){
-        this.setState({
-            [target.name]: target.value
-        })
+        this.vm.set(target.name, target.value);
+
+        this.setState(this.vm.getState());
     }
-    
+
+    handleEmailChange(value, index){
+        this.vm.updateEmail(value, index);
+        this.setState(this.vm.getState());
+    }
+
     handleSubmit(e){
         console.log(this.state);
+        const validationResult = this.vm.validate();
+        this.setState(this.vm.getState());
 
-        if(this.state.firstName.length === 0){
+        if(validationResult.isValid === false){
             e.preventDefault();            
         }
-
     }
 }
 

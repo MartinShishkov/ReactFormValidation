@@ -5,13 +5,8 @@ import { Message } from "../atoms/Message";
 
 const TextBoxGroup = (props) => {
     
-    const errors = props.validation.rules.filter((rule) => {
-        const isValid = rule.condition(props.value);
-
-        return isValid === false;
-    });
-
-    const color = errors.length > 0 ? "red" : null;
+    const isValid = props.errors.length === 0;
+    const color = isValid ? null : "red";
 
     return (
         <div>
@@ -20,10 +15,10 @@ const TextBoxGroup = (props) => {
                 onChange={props.onChange} placeholder={props.placeholder} 
                 className={props.className} 
                 style={{display: "block", borderColor: color}}/>
-            {errors.length > 0 && (
+            {isValid === false && (
                 <div>
-                    {errors.map((e, i) => {
-                        return <Message text={e.errorMessage} color={"red"} key={i}/>
+                    {props.errors.map((e, i) => {
+                        return <Message text={e} color={"red"} key={i}/>
                     })}
                 </div>
             )}

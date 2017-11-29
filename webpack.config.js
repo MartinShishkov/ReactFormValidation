@@ -13,7 +13,6 @@ module.exports = {
         host: "localhost",
         port: 8080
     },
-    watch: true,
     module: {
         loaders: [
             {

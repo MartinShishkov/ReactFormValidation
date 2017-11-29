@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 16);
+/******/ 	return __webpack_require__(__webpack_require__.s = 17);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -261,9 +261,9 @@ process.umask = function() { return 0; };
 /* WEBPACK VAR INJECTION */(function(process) {
 
 if (process.env.NODE_ENV === 'production') {
-  module.exports = __webpack_require__(17);
-} else {
   module.exports = __webpack_require__(18);
+} else {
+  module.exports = __webpack_require__(19);
 }
 
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
@@ -650,6 +650,41 @@ module.exports = ReactPropTypesSecret;
 /* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
+/* WEBPACK VAR INJECTION */(function(process) {/**
+ * Copyright (c) 2013-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+if (process.env.NODE_ENV !== 'production') {
+  var REACT_ELEMENT_TYPE = (typeof Symbol === 'function' &&
+    Symbol.for &&
+    Symbol.for('react.element')) ||
+    0xeac7;
+
+  var isValidElement = function(object) {
+    return typeof object === 'object' &&
+      object !== null &&
+      object.$$typeof === REACT_ELEMENT_TYPE;
+  };
+
+  // By explicitly using `prop-types` you are opting into new development behavior.
+  // http://fb.me/prop-types-in-prod
+  var throwOnDirectAccess = true;
+  module.exports = __webpack_require__(35)(isValidElement, throwOnDirectAccess);
+} else {
+  // By explicitly using `prop-types` you are opting into new production behavior.
+  // http://fb.me/prop-types-in-prod
+  module.exports = __webpack_require__(36)();
+}
+
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+
+/***/ }),
+/* 10 */
+/***/ (function(module, exports, __webpack_require__) {
+
 "use strict";
 /**
  * Copyright (c) 2013-present, Facebook, Inc.
@@ -686,7 +721,7 @@ var ExecutionEnvironment = {
 module.exports = ExecutionEnvironment;
 
 /***/ }),
-/* 10 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -767,7 +802,7 @@ module.exports = EventListener;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 11 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -809,7 +844,7 @@ function getActiveElement(doc) /*?DOMElement*/{
 module.exports = getActiveElement;
 
 /***/ }),
-/* 12 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -880,7 +915,7 @@ function shallowEqual(objA, objB) {
 module.exports = shallowEqual;
 
 /***/ }),
-/* 13 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -895,7 +930,7 @@ module.exports = shallowEqual;
  * 
  */
 
-var isTextNode = __webpack_require__(21);
+var isTextNode = __webpack_require__(22);
 
 /*eslint-disable no-bitwise */
 
@@ -923,7 +958,7 @@ function containsNode(outerNode, innerNode) {
 module.exports = containsNode;
 
 /***/ }),
-/* 14 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -953,42 +988,42 @@ function focusNode(node) {
 module.exports = focusNode;
 
 /***/ }),
-/* 15 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
+"use strict";
 
-if (process.env.NODE_ENV !== 'production') {
-  var REACT_ELEMENT_TYPE = (typeof Symbol === 'function' &&
-    Symbol.for &&
-    Symbol.for('react.element')) ||
-    0xeac7;
 
-  var isValidElement = function(object) {
-    return typeof object === 'object' &&
-      object !== null &&
-      object.$$typeof === REACT_ELEMENT_TYPE;
-  };
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
 
-  // By explicitly using `prop-types` you are opting into new development behavior.
-  // http://fb.me/prop-types-in-prod
-  var throwOnDirectAccess = true;
-  module.exports = __webpack_require__(32)(isValidElement, throwOnDirectAccess);
-} else {
-  // By explicitly using `prop-types` you are opting into new production behavior.
-  // http://fb.me/prop-types-in-prod
-  module.exports = __webpack_require__(33)();
-}
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var ValidationResult = function () {
+    function ValidationResult(errorCodes) {
+        _classCallCheck(this, ValidationResult);
+
+        this.errorCodes = errorCodes;
+        this.isValid = errorCodes.length === 0;
+    }
+
+    _createClass(ValidationResult, [{
+        key: "getErrors",
+        value: function getErrors() {
+            return this.errorCodes;
+        }
+    }]);
+
+    return ValidationResult;
+}();
+
+exports.ValidationResult = ValidationResult;
 
 /***/ }),
-/* 16 */
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1000,11 +1035,11 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactDom = __webpack_require__(19);
+var _reactDom = __webpack_require__(20);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
-var _Home = __webpack_require__(28);
+var _Home = __webpack_require__(29);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -1033,7 +1068,7 @@ window.appEntryPoint = function (settings) {
 };
 
 /***/ }),
-/* 17 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1062,7 +1097,7 @@ version:"16.1.1",__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED:{ReactCurren
 
 
 /***/ }),
-/* 18 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2413,7 +2448,7 @@ module.exports = react;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 19 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2451,15 +2486,15 @@ if (process.env.NODE_ENV === 'production') {
   // DCE check should happen before ReactDOM bundle executes so that
   // DevTools can report bad minification during injection.
   checkDCE();
-  module.exports = __webpack_require__(20);
+  module.exports = __webpack_require__(21);
 } else {
-  module.exports = __webpack_require__(23);
+  module.exports = __webpack_require__(24);
 }
 
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 20 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2474,7 +2509,7 @@ if (process.env.NODE_ENV === 'production') {
 /*
  Modernizr 3.0.0pre (Custom Build) | MIT
 */
-var aa=__webpack_require__(1),m=__webpack_require__(9),A=__webpack_require__(3),B=__webpack_require__(2),ca=__webpack_require__(10),da=__webpack_require__(11),ea=__webpack_require__(12),ha=__webpack_require__(13),ia=__webpack_require__(14),C=__webpack_require__(5);
+var aa=__webpack_require__(1),m=__webpack_require__(10),A=__webpack_require__(3),B=__webpack_require__(2),ca=__webpack_require__(11),da=__webpack_require__(12),ea=__webpack_require__(13),ha=__webpack_require__(14),ia=__webpack_require__(15),C=__webpack_require__(5);
 function D(a){for(var b=arguments.length-1,c="Minified React error #"+a+"; visit http://facebook.github.io/react/docs/error-decoder.html?invariant\x3d"+a,d=0;d<b;d++)c+="\x26args[]\x3d"+encodeURIComponent(arguments[d+1]);b=Error(c+" for the full message or use the non-minified dev environment for full errors and additional helpful warnings.");b.name="Invariant Violation";b.framesToPop=1;throw b;}aa?void 0:D("227");
 var la={children:!0,dangerouslySetInnerHTML:!0,defaultValue:!0,defaultChecked:!0,innerHTML:!0,suppressContentEditableWarning:!0,suppressHydrationWarning:!0,style:!0};function qa(a,b){return(a&b)===b}
 var ra={MUST_USE_PROPERTY:1,HAS_BOOLEAN_VALUE:4,HAS_NUMERIC_VALUE:8,HAS_POSITIVE_NUMERIC_VALUE:24,HAS_OVERLOADED_BOOLEAN_VALUE:32,HAS_STRING_BOOLEAN_VALUE:64,injectDOMPropertyConfig:function(a){var b=ra,c=a.Properties||{},d=a.DOMAttributeNamespaces||{},e=a.DOMAttributeNames||{};a=a.DOMMutationMethods||{};for(var f in c){sa.hasOwnProperty(f)?D("48",f):void 0;var g=f.toLowerCase(),k=c[f];g={attributeName:g,attributeNamespace:null,propertyName:f,mutationMethod:null,mustUseProperty:qa(k,b.MUST_USE_PROPERTY),
@@ -2693,7 +2728,7 @@ Z.injectIntoDevTools({findFiberByHostInstance:qb,bundleType:0,version:"16.1.1",r
 
 
 /***/ }),
-/* 21 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2708,7 +2743,7 @@ Z.injectIntoDevTools({findFiberByHostInstance:qb,bundleType:0,version:"16.1.1",r
  * @typechecks
  */
 
-var isNode = __webpack_require__(22);
+var isNode = __webpack_require__(23);
 
 /**
  * @param {*} object The object to check.
@@ -2721,7 +2756,7 @@ function isTextNode(object) {
 module.exports = isTextNode;
 
 /***/ }),
-/* 22 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2749,7 +2784,7 @@ function isNode(object) {
 module.exports = isNode;
 
 /***/ }),
-/* 23 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2771,18 +2806,18 @@ if (process.env.NODE_ENV !== "production") {
 var React = __webpack_require__(1);
 var invariant = __webpack_require__(4);
 var warning = __webpack_require__(6);
-var ExecutionEnvironment = __webpack_require__(9);
+var ExecutionEnvironment = __webpack_require__(10);
 var _assign = __webpack_require__(3);
 var emptyFunction$1 = __webpack_require__(2);
-var EventListener = __webpack_require__(10);
-var getActiveElement = __webpack_require__(11);
-var shallowEqual = __webpack_require__(12);
-var containsNode = __webpack_require__(13);
-var focusNode = __webpack_require__(14);
+var EventListener = __webpack_require__(11);
+var getActiveElement = __webpack_require__(12);
+var shallowEqual = __webpack_require__(13);
+var containsNode = __webpack_require__(14);
+var focusNode = __webpack_require__(15);
 var emptyObject = __webpack_require__(5);
 var checkPropTypes = __webpack_require__(7);
-var hyphenateStyleName = __webpack_require__(24);
-var camelizeStyleName = __webpack_require__(26);
+var hyphenateStyleName = __webpack_require__(25);
+var camelizeStyleName = __webpack_require__(27);
 
 /**
  * WARNING: DO NOT manually require this module.
@@ -18157,7 +18192,7 @@ module.exports = reactDom;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 24 */
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18172,7 +18207,7 @@ module.exports = reactDom;
 
 
 
-var hyphenate = __webpack_require__(25);
+var hyphenate = __webpack_require__(26);
 
 var msPattern = /^ms-/;
 
@@ -18199,7 +18234,7 @@ function hyphenateStyleName(string) {
 module.exports = hyphenateStyleName;
 
 /***/ }),
-/* 25 */
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18235,7 +18270,7 @@ function hyphenate(string) {
 module.exports = hyphenate;
 
 /***/ }),
-/* 26 */
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18250,7 +18285,7 @@ module.exports = hyphenate;
 
 
 
-var camelize = __webpack_require__(27);
+var camelize = __webpack_require__(28);
 
 var msPattern = /^-ms-/;
 
@@ -18278,7 +18313,7 @@ function camelizeStyleName(string) {
 module.exports = camelizeStyleName;
 
 /***/ }),
-/* 27 */
+/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18313,7 +18348,7 @@ function camelize(string) {
 module.exports = camelize;
 
 /***/ }),
-/* 28 */
+/* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18330,7 +18365,7 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _Form = __webpack_require__(29);
+var _Form = __webpack_require__(30);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -18366,7 +18401,7 @@ var HomePage = function (_React$Component) {
 exports.HomePage = HomePage;
 
 /***/ }),
-/* 29 */
+/* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18383,11 +18418,13 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _TextBoxGroup = __webpack_require__(30);
+var _ObjectBuilder = __webpack_require__(31);
+
+var _ObjectBuilderViewModel = __webpack_require__(32);
+
+var _TextBoxGroup = __webpack_require__(33);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -18403,16 +18440,16 @@ var Form = function (_React$Component) {
 
         var _this = _possibleConstructorReturn(this, (Form.__proto__ || Object.getPrototypeOf(Form)).call(this, props));
 
-        _this.state = {
-            firstName: "",
-            lastName: "",
-            email: "",
-            password: "",
-            confirmPassword: "",
-            canSubmit: true
-        };
+        _this.builder = new _ObjectBuilder.ObjectBuilder();
+
+        _this.vm = new _ObjectBuilderViewModel.ObjectBuilderViewModel(_this.builder, {
+            ERROR_FIRSTNAME_MISSING: "First name cannot be empty!"
+        });
+
+        _this.state = _this.vm.getState();
 
         _this.handleChange = _this.handleChange.bind(_this);
+        _this.handleEmailChange = _this.handleEmailChange.bind(_this);
         _this.handleSubmit = _this.handleSubmit.bind(_this);
         return _this;
     }
@@ -18426,43 +18463,34 @@ var Form = function (_React$Component) {
                 "form",
                 { onSubmit: this.handleSubmit, method: "POST" },
                 _react2.default.createElement(_TextBoxGroup.TextBoxGroup, { label: "First name", name: "firstName", value: this.state.firstName,
-                    onChange: this.handleChange, validation: { rules: [{
-                            condition: function condition(firstName) {
-                                var isValid = firstName.length >= 6;
-                                return isValid;
-                            },
-                            errorMessage: "First name must be at least 6 chars long!"
-                        }, {
-                            condition: function condition(firstName) {
-                                var isValid = firstName.toLowerCase() !== _this2.state.lastName.toLowerCase();
-                                return isValid;
-                            },
-                            errorMessage: "First name cannot be the same as last name!"
-                        }]
-                    } }),
+                    onChange: this.handleChange, errors: this.state.firstNameErrors }),
                 _react2.default.createElement(_TextBoxGroup.TextBoxGroup, { label: "Last name", name: "lastName", value: this.state.lastName,
-                    onChange: this.handleChange, validation: {
-                        rules: []
-                    } }),
-                _react2.default.createElement(_TextBoxGroup.TextBoxGroup, { label: "Email", name: "email", type: "email",
-                    value: this.state.email, onChange: this.handleChange, validation: {
-                        rules: [{
-                            condition: function condition(email) {
-                                var r = new RegExp(/(martin)/);
-                                var isValid = r.test(email) === false;
-                                return isValid;
-                            },
-                            errorMessage: "Dude, your email must not contain 'martin' in it!"
-                        }]
-                    } }),
+                    onChange: this.handleChange, errors: [] }),
+                this.state.emails.map(function (e, i) {
+                    return _react2.default.createElement(
+                        "div",
+                        { key: e.key },
+                        _react2.default.createElement(_TextBoxGroup.TextBoxGroup, { label: "Email", name: "email", type: "email",
+                            value: _this2.state.emails[i].value, onChange: _this2.handleChange, errors: [] }),
+                        _react2.default.createElement(
+                            "button",
+                            { onClick: function onClick() {} },
+                            "X"
+                        )
+                    );
+                }),
+                _react2.default.createElement(
+                    "button",
+                    { onClick: function onClick() {
+                            _this2.vm.addEmailSlot();
+                            _this2.setState(_this2.vm.getState());
+                        } },
+                    "+"
+                ),
                 _react2.default.createElement(_TextBoxGroup.TextBoxGroup, { label: "Password", name: "password", type: "password",
-                    value: this.state.password, onChange: this.handleChange, validation: {
-                        rules: []
-                    } }),
+                    value: "", onChange: this.handleChange, errors: [] }),
                 _react2.default.createElement(_TextBoxGroup.TextBoxGroup, { label: "Confirm password", name: "confirmPassword", type: "password",
-                    value: this.state.confirmPassword, onChange: this.handleChange, validation: {
-                        rules: []
-                    } }),
+                    value: "", onChange: this.handleChange, errors: [] }),
                 _react2.default.createElement("input", { type: "submit", value: "submit" })
             );
         }
@@ -18471,14 +18499,24 @@ var Form = function (_React$Component) {
         value: function handleChange(_ref) {
             var target = _ref.target;
 
-            this.setState(_defineProperty({}, target.name, target.value));
+            this.vm.set(target.name, target.value);
+
+            this.setState(this.vm.getState());
+        }
+    }, {
+        key: "handleEmailChange",
+        value: function handleEmailChange(value, index) {
+            this.vm.updateEmail(value, index);
+            this.setState(this.vm.getState());
         }
     }, {
         key: "handleSubmit",
         value: function handleSubmit(e) {
             console.log(this.state);
+            var validationResult = this.vm.validate();
+            this.setState(this.vm.getState());
 
-            if (this.state.firstName.length === 0) {
+            if (validationResult.isValid === false) {
                 e.preventDefault();
             }
         }
@@ -18490,7 +18528,141 @@ var Form = function (_React$Component) {
 exports.Form = Form;
 
 /***/ }),
-/* 30 */
+/* 31 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.ObjectBuilder = undefined;
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _ValidationResult = __webpack_require__(16);
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var ObjectBuilder = function () {
+    function ObjectBuilder() {
+        _classCallCheck(this, ObjectBuilder);
+
+        this.firstName = "";
+        this.lastName = "";
+        this.emails = [];
+        this.password = "";
+        this.confirmPassword = "";
+    }
+
+    _createClass(ObjectBuilder, [{
+        key: "validate",
+        value: function validate() {
+            return new _ValidationResult.ValidationResult([this.validateFirstName()]);
+        }
+    }, {
+        key: "validateFirstName",
+        value: function validateFirstName() {
+            if (this.firstName.length === 0) {
+                return "ERROR_FIRSTNAME_MISSING";
+            }
+        }
+    }]);
+
+    return ObjectBuilder;
+}();
+
+exports.ObjectBuilder = ObjectBuilder;
+
+/***/ }),
+/* 32 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.ObjectBuilderViewModel = undefined;
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _ValidationResult = __webpack_require__(16);
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var ObjectBuilderViewModel = function () {
+    function ObjectBuilderViewModel(builder, translation) {
+        _classCallCheck(this, ObjectBuilderViewModel);
+
+        this.builder = builder;
+        this.emailCounter = 0;
+        this.firstNameErrors = [];
+        this.translation = translation;
+    }
+
+    _createClass(ObjectBuilderViewModel, [{
+        key: "getState",
+        value: function getState() {
+            var _this = this;
+
+            return {
+                firstName: this.builder.firstName,
+                lastName: this.builder.lastName,
+                emails: this.builder.emails.map(function (e) {
+                    return {
+                        key: _this.emailCounter++,
+                        value: e
+                    };
+                }),
+                firstNameErrors: this.firstNameErrors
+            };
+        }
+    }, {
+        key: "set",
+        value: function set(propertyName, value) {
+            this.builder[propertyName] = value;
+        }
+    }, {
+        key: "addEmailSlot",
+        value: function addEmailSlot() {
+            this.builder.emails.push("");
+        }
+    }, {
+        key: "updateEmail",
+        value: function updateEmail(value, index) {
+            this.builder.emails[index] = value;
+        }
+    }, {
+        key: "validate",
+        value: function validate() {
+            var _this2 = this;
+
+            this.firstNameErrors = [];
+
+            var validationResult = this.builder.validate();
+            var errorMessages = validationResult.getErrors().map(function (errorCode) {
+                if (errorCode === "ERROR_FIRSTNAME_MISSING") {
+                    _this2.firstNameErrors.push(_this2.translation[errorCode]);
+                }
+
+                return _this2.translation[errorCode];
+            });
+
+            this.errorMessages = errorMessages;
+            return validationResult;
+        }
+    }]);
+
+    return ObjectBuilderViewModel;
+}();
+
+exports.ObjectBuilderViewModel = ObjectBuilderViewModel;
+
+/***/ }),
+/* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18505,23 +18677,18 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _Label = __webpack_require__(31);
+var _Label = __webpack_require__(34);
 
-var _TextBox = __webpack_require__(34);
+var _TextBox = __webpack_require__(37);
 
-var _Message = __webpack_require__(35);
+var _Message = __webpack_require__(38);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var TextBoxGroup = function TextBoxGroup(props) {
 
-    var errors = props.validation.rules.filter(function (rule) {
-        var isValid = rule.condition(props.value);
-
-        return isValid === false;
-    });
-
-    var color = errors.length > 0 ? "red" : null;
+    var isValid = props.errors.length === 0;
+    var color = isValid ? null : "red";
 
     return _react2.default.createElement(
         "div",
@@ -18531,11 +18698,11 @@ var TextBoxGroup = function TextBoxGroup(props) {
             onChange: props.onChange, placeholder: props.placeholder,
             className: props.className,
             style: { display: "block", borderColor: color } }),
-        errors.length > 0 && _react2.default.createElement(
+        isValid === false && _react2.default.createElement(
             "div",
             null,
-            errors.map(function (e, i) {
-                return _react2.default.createElement(_Message.Message, { text: e.errorMessage, color: "red", key: i });
+            props.errors.map(function (e, i) {
+                return _react2.default.createElement(_Message.Message, { text: e, color: "red", key: i });
             })
         )
     );
@@ -18544,7 +18711,7 @@ var TextBoxGroup = function TextBoxGroup(props) {
 exports.TextBoxGroup = TextBoxGroup;
 
 /***/ }),
-/* 31 */
+/* 34 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18559,7 +18726,7 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _propTypes = __webpack_require__(15);
+var _propTypes = __webpack_require__(9);
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
@@ -18580,7 +18747,7 @@ Label.propTypes = {
 exports.Label = Label;
 
 /***/ }),
-/* 32 */
+/* 35 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19130,7 +19297,7 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 33 */
+/* 36 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19195,7 +19362,7 @@ module.exports = function() {
 
 
 /***/ }),
-/* 34 */
+/* 37 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19210,7 +19377,7 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _propTypes = __webpack_require__(15);
+var _propTypes = __webpack_require__(9);
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
@@ -19234,7 +19401,7 @@ TextBox.propTypes = {
 exports.TextBox = TextBox;
 
 /***/ }),
-/* 35 */
+/* 38 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19249,7 +19416,7 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _propTypes = __webpack_require__(15);
+var _propTypes = __webpack_require__(9);
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
